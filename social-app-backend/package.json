@@ -1,0 +1,13 @@
+{
+  "name": "social-app-backend",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.12.5",
+    "postgres": "^3.4.8"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
