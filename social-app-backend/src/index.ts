@@ -1,9 +1,11 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import auth from "./routes/auth";
 import posts from "./routes/posts";
 import comments from "./routes/comments";
 
 const app = new Hono();
+app.use("*", cors());
 
 app.route("/auth", auth);
 app.route("/posts", posts);

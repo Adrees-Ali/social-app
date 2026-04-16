@@ -9,5 +9,9 @@
   "private": true,
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "hono": "^4.12.12"
   }
 }
