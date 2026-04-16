@@ -1,0 +1,371 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* styling of home page */
+.home-container {
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.home-header {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+}
+
+.cta-btn {
+  background-color: white;
+  color: #ff758c;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  background-color: #ffe6ec;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  margin-bottom: 10px;
+  color: #ff758c;
+}
+
+/* style of login page */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header styles */
+.login-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.login-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Form styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 600;
+}
+
+.login-form input {
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: #3b82f6; /* nice blue */
+  outline: none;
+}
+
+/* Button similar to your Home page cta-btn */
+.cta-btn {
+  background-color: #3b82f6; /* blue */
+  color: white;
+  font-weight: 700;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #2563eb; /* darker blue on hover */
+}
+
+/* Signup and forgot password text */
+.signup-text, .forgot-password {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-text a, .forgot-password a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.2s ease;
+}
+
+.signup-text a:hover, .forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* styling of register page*/
+
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header styles */
+.register-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.register-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.register-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Form styles */
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form label {
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 600;
+}
+
+.register-form input {
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.register-form input:focus {
+  border-color: #3b82f6; /* nice blue */
+  outline: none;
+}
+
+/* Button similar to your Home page cta-btn */
+.cta-btn {
+  background-color: #3b82f6; /* blue */
+  color: white;
+  font-weight: 700;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #2563eb; /* darker blue on hover */
+}
+
+/* Login text below form */
+.login-text {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-text a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.2s ease;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+
+/* style of forgot password page */
+
+.forgot-password-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header styles */
+.forgot-password-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.forgot-password-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.forgot-password-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Form styles */
+.forgot-password-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.forgot-password-form label {
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 600;
+}
+
+.forgot-password-form input {
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.forgot-password-form input:focus {
+  border-color: #3b82f6; /* nice blue */
+  outline: none;
+}
+
+/* Button styling */
+.cta-btn {
+  background-color: #3b82f6; /* blue */
+  color: white;
+  font-weight: 700;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #2563eb; /* darker blue on hover */
+}
+
+/* Back to login text */
+.back-to-login {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555;
+}
+
+.back-to-login a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.2s ease;
+}
+
+.back-to-login a:hover {
+  text-decoration: underline;
+}
+
+
+
+.dashboard-container{
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: '#042743';
+}
