@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
 export default function Dashboard() {
 
   const [content, setContent] = useState("");
@@ -29,6 +30,22 @@ export default function Dashboard() {
 
     setPosts([data, ...posts]);
     setContent("");
+  };
+
+    const editPost = (id) => {
+    console.log("Edit post:", id);
+  };
+
+  const deletePost = async (id) => {
+    try {
+      await fetch(`http://localhost:4000/posts/${id}`, {
+        method: "DELETE",
+      });
+
+      setPosts(posts.filter(post => post.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -61,9 +78,7 @@ export default function Dashboard() {
               />
 
               <button
-                className="btn btn-primary btn-sm"
-                onClick={addPost}
-              >
+                className="btn btn-primary btn-sm" onClick={addPost}>
                 Post
               </button>
 
@@ -77,6 +92,20 @@ export default function Dashboard() {
 
                 <h6>User {post.user_id}</h6>
                 <p>{post.content}</p>
+
+                  <button
+                    className="btn btn-outline-primary btn-sm me-2"
+                    onClick={() => editPost(post.id)}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    className="btn btn-outline-danger btn-sm"
+                    onClick={() => deletePost(post.id)}
+                  >
+                    Delete
+                </button>
 
                 <button className="btn btn-outline-primary btn-sm me-2">
                   Like

@@ -25,4 +25,28 @@ posts.get("/", async (c: Context) => {
   return c.json(result);
 });
 
+posts.delete("/:id", async (c: Context) => {
+  const id = c.req.param("id");
+
+  await sql`
+    DELETE FROM posts
+    WHERE id = ${id}
+  `;
+
+  return c.json({ message: "Post deleted successfully" });
+});
+
+posts.put("/:id", async (c: Context) => {
+  const id = c.req.param("id");
+  const { content } = await c.req.json();
+
+  await sql`
+    UPDATE posts
+    SET content = ${content}
+    WHERE id = ${id}
+  `;
+
+  return c.json({ message: "Post updated successfully" });
+});
+
 export default posts;
