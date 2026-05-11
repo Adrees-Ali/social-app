@@ -49,4 +49,17 @@ posts.put("/:id", async (c: Context) => {
   return c.json({ message: "Post updated successfully" });
 });
 
+posts.put("/like/:id", async (c: Context) => {
+
+  const id = c.req.param("id");
+
+  const result = await sql`
+    UPDATE posts
+    SET likes = likes + 1
+    WHERE id = ${id}
+    RETURNING *
+  `;
+
+  return c.json(result[0]);
+});
 export default posts;

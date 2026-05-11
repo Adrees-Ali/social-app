@@ -32,9 +32,20 @@ export default function Dashboard() {
     setContent("");
   };
 
-    const editPost = (id) => {
-    console.log("Edit post:", id);
-  };
+const editPost = async (id) => {
+
+  const newContent = prompt("Edit your post");
+
+  await fetch(`http://localhost:4000/posts/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ content: newContent })
+  });
+
+  alert("Post updated");
+};
 
   const deletePost = async (id) => {
     try {
@@ -47,6 +58,19 @@ export default function Dashboard() {
       console.log(error);
     }
   };
+
+  const likePost = async (id) => {
+
+  const response = await fetch(`http://localhost:4000/posts/like/${id}`, {
+    method: "PUT"
+  });
+
+  const updatedPost = await response.json();
+
+  setPosts(posts.map(post =>
+    post.id === id ? updatedPost : post
+  ));
+};
 
   return (
     <div className="container-fluid">
@@ -107,8 +131,11 @@ export default function Dashboard() {
                     Delete
                 </button>
 
-                <button className="btn btn-outline-primary btn-sm me-2">
-                  Like
+                <button
+                  className="btn btn-outline-primary btn-sm me-2"
+                  onClick={() => likePost(post.id)}
+                >
+                  Like ({post.likes || 0})
                 </button>
 
                 <button className="btn btn-outline-secondary btn-sm">
