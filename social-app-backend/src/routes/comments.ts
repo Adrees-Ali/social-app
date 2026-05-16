@@ -18,4 +18,17 @@ comments.post("/", async (c: Context) => {
   });
 });
 
+comments.get("/:postId", async (c: Context) => {
+
+  const postId = c.req.param("postId");
+
+  const result = await sql`
+    SELECT * FROM comments
+    WHERE post_id = ${postId}
+  `;
+
+  return c.json(result);
+});
+
+
 export default comments;

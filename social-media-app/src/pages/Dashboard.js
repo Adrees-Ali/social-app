@@ -6,12 +6,22 @@ export default function Dashboard() {
 
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
+  const [commentText, setCommentText] = useState({});
+  const [comments, setComments] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:4000/posts")
-      .then(res => res.json())
-      .then(data => setPosts(data));
-  }, []);
+  fetch("http://localhost:4000/posts")
+    .then(res => res.json())
+    .then(data => {
+
+      setPosts(data);
+
+      data.forEach(post => {
+        fetchComments(post.id);
+      });
+
+    });
+}, []);
 
   const addPost = async () => {
 
@@ -45,6 +55,11 @@ const editPost = async (id) => {
   });
 
   alert("Post updated");
+  setPosts(posts.map(post =>
+  post.id === id
+    ? { ...post, content: newContent }
+    : post
+));
 };
 
   const deletePost = async (id) => {
@@ -71,6 +86,46 @@ const editPost = async (id) => {
     post.id === id ? updatedPost : post
   ));
 };
+
+const addComment = async (postId) => {
+
+  await fetch("http://localhost:4000/comments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      post_id: postId,
+      user_id: 1,
+      content: commentText[postId]
+    })
+  });
+
+  alert("Comment added");
+
+  
+  fetchComments(postId);
+
+  setCommentText({
+    ...commentText,
+    [postId]: ""
+  });
+};
+
+const fetchComments = async (postId) => {
+
+  const response = await fetch(
+    `http://localhost:4000/comments/${postId}`
+  );
+
+  const data = await response.json();
+
+  setComments(prev => ({
+    ...prev,
+    [postId]: data
+  }));
+};
+
 
   return (
     <div className="container-fluid">
@@ -117,6 +172,17 @@ const editPost = async (id) => {
                 <h6>User {post.user_id}</h6>
                 <p>{post.content}</p>
 
+                {/* Show Comments */}
+                {comments[post.id]?.map((comment) => (
+                  <div key={comment.id} className="mt-2">
+
+                    <small>
+                      {comment.content}
+                    </small>
+
+                  </div>
+                ))}
+
                   <button
                     className="btn btn-outline-primary btn-sm me-2"
                     onClick={() => editPost(post.id)}
@@ -125,11 +191,11 @@ const editPost = async (id) => {
                   </button>
 
                   <button
-                    className="btn btn-outline-danger btn-sm"
+                    className="btn btn-outline-danger btn-sm me-2"
                     onClick={() => deletePost(post.id)}
                   >
                     Delete
-                </button>
+                  </button>
 
                 <button
                   className="btn btn-outline-primary btn-sm me-2"
@@ -138,8 +204,24 @@ const editPost = async (id) => {
                   Like ({post.likes || 0})
                 </button>
 
-                <button className="btn btn-outline-secondary btn-sm">
-                  Comment
+                <input
+                  type="text"
+                  className="form-control mt-2"
+                  placeholder="Write a comment..."
+                  value={commentText[post.id] || ""}
+                  onChange={(e) =>
+                  setCommentText({
+                    ...commentText,
+                    [post.id]: e.target.value
+                  })
+                }
+                />
+
+                <button
+                  className="btn btn-sm btn-secondary mt-2"
+                  onClick={() => addComment(post.id)}
+                >
+                  Add Comment
                 </button>
 
               </div>
