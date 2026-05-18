@@ -11,13 +11,40 @@ const [firstname, setFirstName] = useState("");
 const [lastname, setLastName] = useState("");
 const [bio, setBio] = useState("");
 
-const handleUpdate = () => {
-    if (!firstname || !lastname || !bio) {
-      alert("Please fill all fields ");
-    } else {
-      alert("Profile updated successfully ");
-    }
-  };
+const handleUpdate = async (e) => {
+
+  e.preventDefault();
+
+  if (!firstname || !lastname || !bio) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+      "http://localhost:4000/auth/profile/1",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          first_name: firstname,
+          last_name: lastname,
+          bio: bio
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+   
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 
@@ -68,7 +95,13 @@ const handleUpdate = () => {
           <input type="file" className="form-control" />
         </div>
 
-        <button type="submit" className="btn btn-success mb-3" onClick={handleUpdate}>Update Profile</button>
+        <button
+          type="button"
+          className="btn btn-success mb-3"
+          onClick={handleUpdate}
+        >
+          Update Profile
+        </button>
       </form>
     </div>
   );

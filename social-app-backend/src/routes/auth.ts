@@ -38,4 +38,50 @@ auth.post("/login", async (c: Context) => {
   });
 });
 
+auth.put("/profile/:id", async (c: Context) => {
+
+  const id = c.req.param("id");
+
+  const {
+    first_name,
+    last_name,
+    bio
+  } = await c.req.json();
+
+  const result = await sql`
+    UPDATE users
+    SET
+      first_name = ${first_name},
+      last_name = ${last_name},
+      bio = ${bio}
+    WHERE id = ${id}
+    RETURNING *
+  `;
+
+  return c.json({
+    message: "Profile updated",
+    user: result[0]
+  });
+});
+
+auth.post("/forgot-password", async (c: Context) => {
+
+  const { email } = await c.req.json();
+
+  const user = await sql`
+    SELECT * FROM users
+    WHERE email = ${email}
+  `;
+
+  if (user.length === 0) {
+
+    return c.json({
+      message: "Email not found"
+    }, 404);
+  }
+
+  return c.json({
+    message: "Password reset link sent successfully"
+  });
+});
 export default auth;

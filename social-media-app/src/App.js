@@ -40,7 +40,7 @@ function App() {
         <Route path="/home" element={<Home />} />  
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />  
         <Route path="/register" element={<Register />} /> 
-        <Route path="/forgotPassword" element={<ForgotPassword/>} /> 
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
             {/* after login routes*/}
         <Route path="/dashboard" element={<Dashboard />} /> 
